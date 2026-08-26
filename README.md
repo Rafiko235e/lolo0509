@@ -1,91 +1,93 @@
-<p align="center">
-<img src="https://github.com/thecodrr/fdir/raw/master/assets/fdir.gif" width="75%"/>
+# GSAP (GreenSock Animation Platform)
 
-<h1 align="center">The Fastest Directory Crawler & Globber for NodeJS</h1>
-<p align="center">
-  <a href="https://www.npmjs.com/package/fdir"><img src="https://img.shields.io/npm/v/fdir?style=for-the-badge"/></a>
-  <a href="https://www.npmjs.com/package/fdir"><img src="https://img.shields.io/npm/dw/fdir?style=for-the-badge"/></a>
-  <a href="https://codeclimate.com/github/thecodrr/fdir/maintainability"><img src="https://img.shields.io/codeclimate/maintainability-percentage/thecodrr/fdir?style=for-the-badge"/></a>
-  <a href="https://coveralls.io/github/thecodrr/fdir?branch=master"><img src="https://img.shields.io/coveralls/github/thecodrr/fdir?style=for-the-badge"/></a>
-  <a href="https://www.npmjs.com/package/fdir"><img src="https://img.shields.io/bundlephobia/minzip/fdir?style=for-the-badge"/></a>
-  <a href="https://www.producthunt.com/posts/fdir-every-millisecond-matters"><img src="https://img.shields.io/badge/ProductHunt-Upvote-red?style=for-the-badge&logo=product-hunt"/></a>
-  <a href="https://dev.to/thecodrr/how-i-wrote-the-fastest-directory-crawler-ever-3p9c"><img src="https://img.shields.io/badge/dev.to-Read%20Blog-black?style=for-the-badge&logo=dev.to"/></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/github/license/thecodrr/fdir?style=for-the-badge"/></a>
-</p>
-</p>
+[![GSAP - Animate anything](https://gsap.com/GSAP-share-image.png)](https://gsap.com)
 
-⚡ **The Fastest:** Nothing similar (in the NodeJS world) beats `fdir` in speed. It can easily crawl a directory containing **1 million files in < 1 second.**
+GSAP is a **framework-agnostic** JavaScript animation library that turns developers into animation superheroes. Build high-performance animations that work in **every** major browser. Animate CSS, SVG, canvas, React, Vue, WebGL, colors, strings, motion paths, generic objects... anything JavaScript can touch! GSAP's <a href="https://gsap.com/docs/v3/Plugins/ScrollTrigger/">ScrollTrigger</a> plugin delivers jaw-dropping scroll-based animations with minimal code. <a href="https://gsap.com/docs/v3/GSAP/gsap.matchMedia()">gsap.matchMedia()</a> makes building responsive, accessibility-friendly animations a breeze.
 
-💡 **Stupidly Easy:** `fdir` uses expressive Builder pattern to build the crawler increasing code readability.
+No other library delivers such advanced sequencing, reliability, and tight control while solving real-world problems on over 12 million sites. GSAP works around countless browser inconsistencies; your animations ***just work***. At its core, GSAP is a high-speed property manipulator, updating values over time with extreme accuracy. It's up to 20x faster than jQuery!
 
-🤖 **Zero Dependencies\*:** `fdir` only uses NodeJS `fs` & `path` modules.
+GSAP is completely flexible; sprinkle it wherever you want. **Zero dependencies.**
 
-🕺 **Astonishingly Small:** < 2KB in size gzipped & minified.
+There are many optional <a href="https://gsap.com/docs/v3/Plugins">plugins</a> and <a href="https://gsap.com/docs/v3/Eases">easing</a> functions for achieving advanced effects easily like <a href="https://gsap.com/docs/v3/Plugins/ScrollTrigger/">scrolling</a>, <a href="https://gsap.com/docs/v3/Plugins/MorphSVGPlugin">morphing</a>, [text splitting](https://gsap.com/docs/v3/Plugins/SplitText), animating along a <a href="https://gsap.com/docs/v3/Plugins/MotionPathPlugin">motion path</a> or <a href="https://gsap.com/docs/v3/Plugins/Flip/">FLIP</a> animations. There's even a handy <a href="https://gsap.com/docs/v3/Plugins/Observer/">Observer</a> for normalizing event detection across browsers/devices. 
 
-🖮 **Hackable:** Extending `fdir` is extremely simple now that the new Builder API is here. Feel free to experiment around.
 
-_\* `picomatch` must be installed manually by the user to support globbing._
+### Get Started
 
-## 🚄 Quickstart
+[![Get Started with GSAP](https://gsap.com/_img/github/get-started.jpg)](https://gsap.com/get-started)
 
-### Installation
 
-You can install using `npm`:
+## Docs &amp; Installation
 
-```sh
-$ npm i fdir
+View the <a href="https://gsap.com/docs">full documentation here</a>, including an <a href="https://gsap.com/install">installation guide</a>.
+
+### CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
 ```
 
-or Yarn:
+See <a href="https://www.jsdelivr.com/gsap">JSDelivr's dedicated GSAP page</a> for quick CDN links to the core files/plugins. There are more <a href="https://gsap.com/install">installation instructions</a> at gsap.com.
 
-```sh
-$ yarn add fdir
+**Every major ad network excludes GSAP from file size calculations** and most have it on their own CDNs, so contact them for the appropriate URL(s). 
+
+### NPM
+See the <a href="https://gsap.com/install">guide to using GSAP via NPM here</a>.
+
+```javascript
+npm install gsap
 ```
 
-### Usage
+GSAP's core can animate almost anything including CSS and attributes, plus it includes all of the <a href="https://gsap.com/docs/v3/GSAP/UtilityMethods">utility methods</a> like <a href="https://gsap.com/docs/v3/GSAP/UtilityMethods/interpolate()">interpolate()</a>, <a href="https://gsap.com/docs/v3/GSAP/UtilityMethods/mapRange()">mapRange()</a>, most of the <a href="https://gsap.com/docs/v3/Eases">eases</a>, and it can do snapping and modifiers. 
 
-```ts
-import { fdir } from "fdir";
+```javascript
+// typical import
+import gsap from "gsap";
 
-// create the builder
-const api = new fdir().withFullPaths().crawl("path/to/dir");
+// get other plugins:
+import ScrollTrigger from "gsap/ScrollTrigger";
+import Flip from "gsap/Flip";
+import Draggable from "gsap/Draggable";
 
-// get all files in a directory synchronously
-const files = api.sync();
+// or all tools are exported from the "all" file (excluding members-only plugins):
+import { gsap, ScrollTrigger, Draggable, MotionPathPlugin } from "gsap/all";
 
-// or asynchronously
-api.withPromise().then((files) => {
-  // do something with the result here.
-});
+// don't forget to register plugins
+gsap.registerPlugin(ScrollTrigger, Draggable, Flip, MotionPathPlugin); 
 ```
 
-## Documentation:
+The NPM files are ES modules, but there's also a /dist/ directory with <a href="https://www.davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/">UMD</a> files for extra compatibility.
 
-Documentation for all methods is available [here](/documentation.md).
+## GSAP is FREE! 
 
-## 📊 Benchmarks:
+Thanks to [Webflow](https://webflow.com), GSAP is now **100% FREE** including ALL of the bonus plugins like [SplitText](https://gsap.com/docs/v3/Plugins/SplitText), [MorphSVG](https://gsap.com/docs/v3/Plugins/MorphSVGPlugin), and all the others that were exclusively available to Club GSAP members. That's right - the entire GSAP toolset is FREE, even for commercial use! 🤯  Read more [here](https://webflow.com/blog/gsap-becomes-free)
 
-Please check the benchmark against the latest version [here](/BENCHMARKS.md).
+### ScrollTrigger &amp; ScrollSmoother
 
-## 🙏Used by:
+If you're looking for scroll-driven animations, GSAP's <a href="https://gsap.com/docs/v3/Plugins/ScrollTrigger/">ScrollTrigger</a> plugin is the standard. There's a companion <a href="https://gsap.com/docs/v3/Plugins/ScrollSmoother/">ScrollSmoother</a> as well.
 
-`fdir` is downloaded over 200k+ times a week by projects around the world. Here's a list of some notable projects using `fdir` in production:
+[![ScrollTrigger](https://gsap.com/_img/github/scrolltrigger.jpg)](https://gsap.com/docs/v3/Plugins/ScrollTrigger)
 
-> Note: if you think your project should be here, feel free to open an issue. Notable is anything with a considerable amount of GitHub stars.
+### Using React? 
 
-1. [rollup/plugins](https://github.com/rollup/plugins)
-2. [SuperchupuDev/tinyglobby](https://github.com/SuperchupuDev/tinyglobby)
-3. [pulumi/pulumi](https://github.com/pulumi/pulumi)
-4. [dotenvx/dotenvx](https://github.com/dotenvx/dotenvx)
-5. [mdn/yari](https://github.com/mdn/yari)
-6. [streetwriters/notesnook](https://github.com/streetwriters/notesnook)
-7. [imba/imba](https://github.com/imba/imba)
-8. [moroshko/react-scanner](https://github.com/moroshko/react-scanner)
-9. [netlify/build](https://github.com/netlify/build)
-10. [yassinedoghri/astro-i18next](https://github.com/yassinedoghri/astro-i18next)
-11. [selfrefactor/rambda](https://github.com/selfrefactor/rambda)
-12. [whyboris/Video-Hub-App](https://github.com/whyboris/Video-Hub-App)
+There's a <a href="https://www.npmjs.com/package/@gsap/react">@gsap/react</a> package that exposes a `useGSAP()` hook which is a drop-in replacement for `useEffect()`/`useLayoutEffect()`, automating cleanup tasks. Please read the <a href="https://gsap.com/react">React guide</a> for details.
 
-## 🦮 LICENSE
+### Resources
 
-Copyright &copy; 2024 Abdullah Atta under MIT. [Read full text here.](https://github.com/thecodrr/fdir/raw/master/LICENSE)
+* <a href="https://gsap.com/">gsap.com</a>
+* <a href="https://gsap.com/get-started/">Getting started guide</a>
+* <a href="https://gsap.com/docs/">Docs</a>
+* <a href="https://gsap.com/demos">Demos &amp; starter templates</a>
+* <a href="https://gsap.com/community/">Community forums</a>
+* <a href="https://gsap.com/docs/v3/Eases">Ease Visualizer</a>
+* <a href="https://gsap.com/showcase">Showcase</a>
+* <a href="https://www.youtube.com/@GreenSockLearning">YouTube Channel</a>
+* <a href="https://gsap.com/cheatsheet">Cheat sheet</a>
+* <a href="https://webflow.com">Webflow</a>
+
+### Need help?
+Ask in the friendly <a href="https://gsap.com/community/">GSAP forums</a>. Or share your knowledge and help someone else - it's a great way to sharpen your skills! Report any bugs there too (or <a href="https://github.com/greensock/GSAP/issues">file an issue here</a> if you prefer).
+
+### License
+GreenSock's standard "no charge" license can be viewed at <a href="https://gsap.com/standard-license">https://gsap.com/standard-license</a>.
+
+Copyright (c) 2008-2026, GreenSock. All rights reserved.
